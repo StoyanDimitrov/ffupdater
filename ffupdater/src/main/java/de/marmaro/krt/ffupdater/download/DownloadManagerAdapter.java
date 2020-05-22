@@ -3,7 +3,9 @@ package de.marmaro.krt.ffupdater.download;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
@@ -91,6 +93,9 @@ public class DownloadManagerAdapter {
             double columnActualBytes = cursor.getInt(cursor.getColumnIndex(COLUMN_BYTES_DOWNLOADED_SO_FAR));
             int percent = (int) ((columnActualBytes / columnTotalBytes) * 100);
             return new Pair<>(status, percent);
+        } catch (CursorIndexOutOfBoundsException e) {
+            Log.i("DownloadManagerAdapter", "can't get status or progress for download", e);
+            return new Pair<>(DownloadManager.STATUS_PENDING, 0);
         }
     }
 
