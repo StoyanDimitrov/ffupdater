@@ -3,11 +3,14 @@
 ## Firefox-Updater
 
 Download, install and update these browsers from Mozilla:
- - [Firefox Browser / Fennec Release](https://play.google.com/store/apps/details?id=org.mozilla.firefox)
- - [Firefox Focus](https://play.google.com/store/apps/details?id=org.mozilla.focus)
- - [Firefox Klar](https://play.google.com/store/apps/details?id=org.mozilla.klar)
- - [Firefox Lite](https://play.google.com/store/apps/details?id=org.mozilla.rocket)
- - [Firefox Preview / Fenix](https://play.google.com/store/apps/details?id=org.mozilla.fenix)
+- [Firefox Browser (Fennec)](https://play.google.com/store/apps/details?id=org.mozilla.firefox)
+- [Firefox Focus](https://play.google.com/store/apps/details?id=org.mozilla.focus)
+- [Firefox Klar](https://play.google.com/store/apps/details?id=org.mozilla.klar)
+- [Firefox Lite](https://play.google.com/store/apps/details?id=org.mozilla.rocket)
+- [Firefox Preview (Fenix)](https://play.google.com/store/apps/details?id=org.mozilla.fenix)
+- [Firefox for Android Beta (Fenix)](https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta) is now the beta of `Firefox Preview (Fenix)` and not `Firefox Browser (Fennec)`
+- [Firefox Preview Nightly for Developers (Fenix)](https://play.google.com/store/apps/details?id=org.mozilla.fenix.nightly)
+- [Firefox Nightly for Developers](https://play.google.com/store/apps/details?id=org.mozilla.fennec_aurora) is the same as `Firefox Preview Nightly for Developers (Fenix)` therefore not additionally supported
 
 FFUpdater will check periodically for updates and will display a notification when an update is available. This feature itself can be disabled and the check frequency can be changed.
 
@@ -28,9 +31,9 @@ Important: I removed Fennec Beta and Fennec Nightly because they are outdated - 
 
 >Fennec is being replaced by our new state-of-the-art mobile browser codenamed "Fenix". We're slowly migrating users in order to make sure the experience is as painless and as enjoyable as possible. We started to migrate users who were using Fennec Nightly in January (bug 1608882). It took us several weeks to be sure of the result and to finally offer Fenix Nightly to all users using Fennec Nightly. Another few weeks later, we repeated the same process with Fennec Beta (bug 1614287). Fenix Beta has been offered to the whole Fennec Beta population on April 22nd. We're planning to do the same with Fennec Release sometimes this year. The schedule is still to be determined.
 
- >The Google Play Store[1] has a lot of nice features, but it's still pretty basic whenever a software publisher wants to slowly migrate users. Once a migration is started, we can't provide any Fennec updates to the population who wasn't offered Fenix, yet. I can say this restriction is painful to manage for Android developers, Mozilla included. Because of it, we had to stop shipping Fennec Nightly/Beta APKs at the beginning of each migration. This explains the dates of the last builds. At the same time, we stopped building Fennec Nightly/Beta because it enabled us to save technical resources[2] as well as people's time[3].
+ >The Google Play Store has a lot of nice features, but it's still pretty basic whenever a software publisher wants to slowly migrate users. Once a migration is started, we can't provide any Fennec updates to the population who wasn't offered Fenix, yet. I can say this restriction is painful to manage for Android developers, Mozilla included. Because of it, we had to stop shipping Fennec Nightly/Beta APKs at the beginning of each migration. This explains the dates of the last builds. At the same time, we stopped building Fennec Nightly/Beta because it enabled us to save technical resources as well as people's time.
 
-https://bugzilla.mozilla.org/show_bug.cgi?id=1627518
+<https://bugzilla.mozilla.org/show_bug.cgi?id=1627518>
 
 ## Build app
 
@@ -42,7 +45,7 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1627518
  2. New
  3. Project from Version Control...
  4. Git
- 5. URL: https://notabug.org/Tobiwan/ffupdater.git
+ 5. URL: <https://notabug.org/Tobiwan/ffupdater.git>
  6. Clone
  7. Wait for Android Studio to import project
  8. Build
@@ -55,7 +58,7 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1627518
 
  1. Check out project from Version Control
  2. Git
- 3. URL: https://notabug.org/Tobiwan/ffupdater.git
+ 3. URL: <https://notabug.org/Tobiwan/ffupdater.git>
  4. Clone
  5. "Would you like to open it?" Yes
  6. Wait for Android Studio to import project
@@ -73,6 +76,7 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1627518
  ````
  sdk.dir=C\:\\Users\\Tobias\\AppData\\Local\\Android\\Sdk
  ````
+
  4. `gradlew assembleDebug`
  5. `cd ffupdater/build/outputs/apk/debug`
  6. `ffupdater-debug.apk` is the generated APK file
@@ -88,18 +92,28 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1627518
 ### Fennec Release
 
 The Mozilla API will be queried:
- - https://archive.mozilla.org/pub/mobile/releases/ for latest version names
- - https://download.mozilla.org/?product=%s&os=%s&lang=multi to download the  app
-   - first parameter: fennec-latest, fennec-beta-latest or fennec-nightly-latest
-   - second parameter: android or android-x86
+- <https://archive.mozilla.org/pub/mobile/releases/> for latest version names
+- <https://download.mozilla.org/?product=%s&os=%s&lang=multi> to download the  app
+  - first parameter: fennec-latest, fennec-beta-latest or fennec-nightly-latest
+  - second parameter: android or android-x86
 
-### Firefox Focus, Firefox Klar, Firefox Lite, Fenix
+### Fenix Beta/Nightly, Firefox Focus/Klar
+
+The Mozilla CI server will be queried:
+- <https://firefox-ci-tc.services.mozilla.com/tasks/index/project.mobile.fenix.v2.production.2020.04.30/latest> (TODO this link only provides outdated version)
+- <https://firefox-ci-tc.services.mozilla.com/tasks/index/mobile.v2.fenix.beta.latest>
+- <https://firefox-ci-tc.services.mozilla.com/tasks/index/mobile.v2.fenix.nightly.latest>
+- <https://firefox-ci-tc.services.mozilla.com/tasks/index/project.mobile.focus.release/latest>
+
+
+### Firefox Lite, Fenix Production, Lockwise
 
 The Github API will be queried:
- - https://api.github.com/repos/mozilla-mobile/focus-android/releases/latest for Firefox Focus and Firefox Klar
- - https://api.github.com/repos/mozilla-tw/FirefoxLite/releases/latest for Firefox Lite
- - https://api.github.com/repos/mozilla-mobile/fenix/releases/latest for Fenix
- 
+- <https://api.github.com/repos/mozilla-tw/FirefoxLite/releases/latest>
+- <https://api.github.com/repos/mozilla-mobile/fenix/releases/latest>
+- <https://api.github.com/repos/mozilla-lockwise/lockwise-android/releases/latest>
+
+
 If .../releases/latest returns a release without assets (APK files for download), then fetch all releases and search
 for the latest release with assets.
 
@@ -108,20 +122,20 @@ for the latest release with assets.
 Since Mozilla [shut down their FTP server on 2015-08-05](https://blog.mozilla.org/it/2015/07/27/product-delivery-migration-what-is-changing-when-its-changing-and-the-impacts/), non-"Google Play Store" updates of Firefox have to be done by third-party apps such as this one.
 
 
-Mozilla now uses a uniform URL to point to the latest release, see [their README](https://archive.mozilla.org/pub/mobile/releases/latest/README.txt) for details. The current URL for Android is: https://download.mozilla.org/?product=fennec-latest&os=android&lang=multi
+Mozilla now uses a uniform URL to point to the latest release, see [their README](https://archive.mozilla.org/pub/mobile/releases/latest/README.txt) for details. The current URL for Android is: <https://download.mozilla.org/?product=fennec-latest&os=android&lang=multi>
 
 I opened a ticket about non-"Google Play Store" updates with Mozilla in 2015, as did others:
 
-- [ ] https://bugzilla.mozilla.org/show_bug.cgi?id=1192279
-- [x] https://bugzilla.mozilla.org/show_bug.cgi?id=1220773
+- [ ] <https://bugzilla.mozilla.org/show_bug.cgi?id=1192279>
+- [x] <https://bugzilla.mozilla.org/show_bug.cgi?id=1220773>
 
 ### Maintainer:
 
 #### Tobiwan (now)
 
-#### Boris Kraut (https://gitlab.com/krt/ffupdater, until April 2019)
+#### Boris Kraut (<https://gitlab.com/krt/ffupdater>, until April 2019)
 > Since I left F-Droid (and Android/Smartphones) about a year ago, I am looking for a new maintainer to take over. Unfortunately the upstream issue I opened years ago is still not solved in 2019. While Fennec F-Droid is back in the mainline repo and other binary repos do serve Firefox, some might still prefer this updater. So as I said: Maintainers welcome. The main task should be to test the last few merge requests (especially the background update stuff) and release a new version.
-> **New Maintainer: https://notabug.org/Tobiwan/ffupdater**
+> **New Maintainer: <https://notabug.org/Tobiwan/ffupdater>**
 
 ## License
 
